@@ -44,14 +44,14 @@
                         <input type="tel" name="mobile-no" class="form-control" id="mobile" placeholder="Mobile No" required />
                         <div id="mobileError" class="form-text text-danger field-error"></div>
                     </div>
-                    
+
                     <div class="mb-3">
                         <input type="password" name="passkey" class="form-control" id="passkey" placeholder="Password" required />
                         <div id="emailError" class="form-text text-danger field-error"></div>
                     </div>
 
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-primary rounded-0">Register</button>
+                        <button type="submit" class="btn btn-primary rounded-0" id="form-btn">Register</button>
                     </div>
                 </form>
             </div>
@@ -64,6 +64,30 @@
 
     <!-- main js -->
     <script src="js/script.js"></script>
+    <script src="js/validation.js"></script>
+    <script>
+        let errors = [];
+
+        // validating fields
+        document.querySelector('#form-btn').addEventListener('click', function() {
+            event.preventDefault();
+            
+            errors[0] = validateFullName(document.querySelector('#full-name'),
+                document.querySelector('#full-name').nextElementSibling);
+
+            errors[1] = validateEmail(document.querySelector('#email'),
+                document.querySelector('#email').nextElementSibling);
+
+            errors[2] = validateMobileNo(document.querySelector('#mobile'),
+                document.querySelector('#mobile').nextElementSibling);
+
+            errors[3] = validatePassword(document.querySelector('#passkey'),
+                document.querySelector('#passkey').nextElementSibling);
+                console.log(errors);
+        });
+
+        
+    </script>
 </body>
 
 </html>
