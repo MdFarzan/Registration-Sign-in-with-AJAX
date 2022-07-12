@@ -10,7 +10,7 @@ function validateFullName(elm, errorElm){
     errorElm.innerHTML = '';
     elm.style.border = DEFAULT_BORDER;
 
-    let pattern = /^[a-zA-Z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/;
+    let pattern = /^[a-zA-Z]([-']?[a-zA-Z]+)*( [a-zA-Z]([-']?[a-zA-Z]+)*)+$/g;
     if(val == ""){
         
         elm.style.border = "1px solid red";
@@ -19,14 +19,16 @@ function validateFullName(elm, errorElm){
         return false;
     }
 
-    else if(!pattern.test(val)){    
-        elm.style.border = "1px solid red";
-        errorElm.innerHTML = "Please enter a valid full name!";
-        return false;
+    else if(pattern.test(val)){    
+        
+        return true;
     }
 
     else{
-        return true;
+
+        elm.style.border = "1px solid red";
+        errorElm.innerHTML = "Please enter a valid full name!";
+        return false;
     }
         
 }
