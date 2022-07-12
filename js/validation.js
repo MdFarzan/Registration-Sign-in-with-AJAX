@@ -87,7 +87,7 @@ function validateMobileNo(elm, errorElm){
 }
 
 
-// validate mobile no
+// validate password
 function validatePassword(elm, errorElm){
     let val = elm.value;
     elm.style.border = DEFAULT_BORDER;
@@ -109,4 +109,9 @@ function validatePassword(elm, errorElm){
         return true;
     }
   
+}
+
+// displaying errors from server
+function showServerError(selector, error){
+    document.querySelector(selector).innerHTML = error!=true?error:'';
 }

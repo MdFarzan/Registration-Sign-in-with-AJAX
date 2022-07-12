@@ -31,7 +31,7 @@
             <div class="form-body text-white">
                 <form autocomplete="off">
                     <div class="mb-3">
-                        <input type="text" name="full-name" class="form-control" id="full-name" placeholder="Full Name" required />
+                        <input type="text" name="full_name" class="form-control" id="full-name" placeholder="Full Name" required />
                         <div id="nameError" class="form-text text-danger field-error"></div>
                     </div>
 
@@ -41,13 +41,13 @@
                     </div>
 
                     <div class="mb-3">
-                        <input type="tel" name="mobile-no" class="form-control" id="mobile" placeholder="Mobile No" required />
+                        <input type="tel" name="mobile_no" class="form-control" id="mobile" placeholder="Mobile No" required />
                         <div id="mobileError" class="form-text text-danger field-error"></div>
                     </div>
 
                     <div class="mb-3">
                         <input type="password" name="passkey" class="form-control" id="passkey" placeholder="Password" required />
-                        <div id="emailError" class="form-text text-danger field-error"></div>
+                        <div id="passkeyError" class="form-text text-danger field-error"></div>
                     </div>
 
                     <div class="text-center mt-4">
@@ -71,7 +71,7 @@
         // validating fields
         document.querySelector('#form-btn').addEventListener('click', function() {
             event.preventDefault();
-            
+
             errors[0] = validateFullName(document.querySelector('#full-name'),
                 document.querySelector('#full-name').nextElementSibling);
 
@@ -83,10 +83,55 @@
 
             errors[3] = validatePassword(document.querySelector('#passkey'),
                 document.querySelector('#passkey').nextElementSibling);
-                console.log(errors);
-        });
 
-        
+
+            if (!errors.includes(false)) {
+                let form = new FormData(document.forms[0]);
+
+
+                let xhr = new XMLHttpRequest();
+                
+                xhr.onreadystatechange = ()=>{
+
+                    // on success
+                    if(xhr.readyState == 4){
+
+                        if(xhr.status == 200){
+
+                            let response = JSON.parse(xhr.responseText);
+                            if(response.is_error == true){
+                                showServerError('#nameError', response.name_error);
+                                showServerError('#emailError', response.email_error);
+                                showServerError('#mobileError', response.mobile_error);
+                                showServerError('#passkeyError', response.passkey_error);
+                            }
+
+                            else if(response.status == 'SUCCESS'){
+                                alert('Registration Successfull');
+                                window.location.href = 'sign-in.php';
+                            }
+                            
+                            else{
+                                alert('Error! Something went wrong please try again.');
+                            }
+                            
+                        }
+                        else{
+                            alert('Error! Unable to register!                                                                                                                                                                                                                                                  ');
+                        }
+                        
+                    }
+
+                }
+                xhr.open('post','controller/registration.php', true);
+                xhr.send(form);
+            }
+
+            else{
+                alert('Error: Please ensure all fields are correct!');
+            }
+
+        });
     </script>
 </body>
 
