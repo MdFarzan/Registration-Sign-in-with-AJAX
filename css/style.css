@@ -46,6 +46,10 @@ form button, form input[type=button]{
     font-weight: 600 !important;
 }
 
+.ct-text{
+    font-size:20px;
+}
+
 
 @media (max-width:620px){
 
