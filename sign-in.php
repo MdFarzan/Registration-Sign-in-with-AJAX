@@ -25,7 +25,7 @@
         <section class="form-wrap">
             <div class="form-header text-center text-white">
                 <h1>Sign In</h1>
-                <p class="mb-0">Welcome, Please sign in to proceed</p>
+                <p class="mb-0 ct-text">Welcome, Please sign in to proceed</p>
             </div>
 
             <div class="form-body text-white">

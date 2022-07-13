@@ -25,7 +25,7 @@
         <section class="form-wrap">
             <div class="form-header text-center text-white">
                 <h1>Registration Form</h1>
-                <p class="mb-0">Please fill this form to register</p>
+                <p class="mb-0 ct-text">Please fill this form to register</p>
             </div>
 
             <div class="form-body text-white">
@@ -54,6 +54,8 @@
                         <button type="submit" class="btn btn-primary rounded-0" id="form-btn">Register</button>
                     </div>
                 </form>
+
+                <p class="text-center mt-4 ct-text">Already registered? <a href="sign-in.php" title="Sign in">Sign in</a></p>
             </div>
 
         </section>
